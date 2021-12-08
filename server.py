@@ -99,8 +99,6 @@ async def find_a_game(user_name):
 async def request_game_data(player: str, board_id = None):
     global boards
     if board_id:
-        #if boards[int(board_id)].board_state["winner"]!=None:
-            #return f"WINNER={str(boards[int(board_idO)].board_state['winner'])}"
         return str(boards[int(board_id)].board_state)
     for id, board in enumerate(boards):
         if player in board.board_state["players"] and board.board_state["winner"]==None:
