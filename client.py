@@ -98,7 +98,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.chatbox_text_log = ["<b>Hello!</b> start new game pls"]
+        self.chatbox_text_log = ["<b>Hello!</b> change your name with ", "/name your_name", "Then, join a game with", "/join"]
         self.update_chatbox()
         self.installEventFilter(self)
         self.ui.sendButton.clicked.connect(self.send_message)
