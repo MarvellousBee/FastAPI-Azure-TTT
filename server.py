@@ -23,14 +23,8 @@ class Game:
         #par:, x, y
         PlayerID = self.board_state["players"].index(par["playername"])
         x, y = int(par["x"]), int(par["y"])
-        print("FEEDBACK")
-        print(self.board_state["arena"][x][y], PlayerID, self.board_state["current_player_turn"])
-
-
         if self.board_state["arena"][x][y] != -1 or PlayerID != self.board_state["current_player_turn"]:
-            print("spierdalaj")
             return False
-        print("zapraszamy")
         self.board_state["current_player_turn"] = int(not self.board_state["current_player_turn"])
         self.board_state["arena"][x][y]=PlayerID
         return True
@@ -90,7 +84,6 @@ async def find_a_game(user_name):
         #start a match
         board_id = len(boards)
         boards.append(Game(user_name, waiting_player))
-        print("match started!")
         waiting_player = False
         return board_id
         #uncomment to automatically remove empty games
@@ -108,9 +101,7 @@ async def request_game_data(player: str, board_id = None):
     if board_id:
         #if boards[int(board_id)].board_state["winner"]!=None:
             #return f"WINNER={str(boards[int(board_idO)].board_state['winner'])}"
-        print("okurwa", board_id)
         return str(boards[int(board_id)].board_state)
-    print(boards)
     for id, board in enumerate(boards):
         if player in board.board_state["players"] and board.board_state["winner"]==None:
             return id
@@ -127,8 +118,6 @@ async def command(board_id: int,username: str,command: str, request: starlette.r
     # False - the board is full
     possi_winner = boards[board_id].scan()
     if possi_winner!="not_full":#In Python, 1==True
-        print("JAAAAAAAAAAAAAAAAAAAAAAAS")
-        print(possi_winner)
         boards[board_id].board_state["winner"]=possi_winner
 
     return value

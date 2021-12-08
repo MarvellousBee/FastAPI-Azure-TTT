@@ -6,8 +6,9 @@ import time
 import requests
 import ast
 
-#change this
-ip = "http://127.0.0.1:8000/"
+#local, change to your public app's ID
+#ip = "http://127.0.0.1:8000/"
+
 
 
 gamedata = {}
@@ -25,6 +26,7 @@ class APIWorker(QObject):
                 elif j==1:
                     signs_out.append("X")
 
+        #for loop? what is that?
         window.ui.zone_0.setStyleSheet(f"background-image : url(media/{signs_out[0]}.png);")
         window.ui.zone_1.setStyleSheet(f"background-image : url(media/{signs_out[1]}.png);")
         window.ui.zone_2.setStyleSheet(f"background-image : url(media/{signs_out[2]}.png);")
@@ -79,7 +81,6 @@ class APIWorker(QObject):
 
     def worker_get_dict(self, req):
         data = requests.get(window.server_ip+req).text
-        print(data)
         if data[:7]=="WINNER=":
             return data[7:]
         data = data.replace('array(','').replace(']])', ']]')
@@ -171,13 +172,18 @@ class MainWindow(QMainWindow):
                     self.player_id = 0
                 elif answer == '"taken_username"':
                     self.update_chatbox(f"'{self.playername}' is already in a lobby!")
-                else:
+                elif answer == '0':
                     self.update_chatbox("Joining a lobby...")
                     self.in_game = True
                     self.lobby_id = answer
                     self.player_id = 1
+                else:
+                    print("SERVER ERROR:", answer)
+                    raise Exception("Internal Server Error")
+                    exit()
+
             elif lineEdit_input[1:] == "surrender":
-                print("surrender")
+                print("surrender")# TODO : properly implement /surrender
             elif lineEdit_input[1:5] == "name":
                 self.playername = " ".join(lineEdit_input.split(" ")[1:])
             elif lineEdit_input[1:5] == "help":
@@ -203,7 +209,6 @@ class MainWindow(QMainWindow):
         [2,2]
     ]
     def zone_onclick(self, inp, object):
-        print("DAWAJ",self.in_game)
         if self.in_game:
 
             out = self.arr[inp]
