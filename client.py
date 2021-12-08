@@ -6,14 +6,11 @@ import time
 import requests
 import ast
 
+#change this
+ip = "http://127.0.0.1:8000/"
+
+
 gamedata = {}
-
-
-signs = {
-    -1:"zone_empty",
-     0:"O",
-     1:"X"
-}
 
 class APIWorker(QObject):
 
@@ -109,8 +106,8 @@ class MainWindow(QMainWindow):
         self.worker.moveToThread(self.thread)
         self.thread.started.connect(self.worker.listen)
         self.thread.start()
-        #change this
-        self.server_ip = "http://127.0.0.1:8000/"
+        #convenience 1st!
+        self.server_ip = ip
 
 
         #for loop? what is that?
