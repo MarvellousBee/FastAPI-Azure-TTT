@@ -1,2 +1,2 @@
 # FastAPI-Azure-TTT
-Online tic-tac-toe.
+ Online Tic-Tac-toe.
