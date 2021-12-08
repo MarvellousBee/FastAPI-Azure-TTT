@@ -1,7 +1,7 @@
 # FastAPI-Azure-TTT
  Online Tic-Tac-toe.
  
-![](Media/image1.png)  
+![](media/image1.png)  
 
 
 ## Deployment
