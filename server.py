@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 import numpy as np
-import time
 import starlette
 
 
@@ -61,7 +60,6 @@ class Game:
             for j in i:
                 if j==-1:
                     return "not_full"
-                    break
         return "full"
     def __repr__(self):
         return str(self.board_state)

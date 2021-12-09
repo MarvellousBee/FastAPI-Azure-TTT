@@ -1,13 +1,13 @@
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget
-from PySide6.QtCore import QFile, QEvent, Qt, QObject, QThread
+from PySide6.QtCore import QEvent, QObject, QThread
 from QTgui import Ui_MainWindow
 import time
 import requests
 import ast
 
 #local, change to your public app's ID
-#ip = "http://127.0.0.1:8000/"
+ip = "http://127.0.0.1:8000/"
 
 
 
